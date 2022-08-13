@@ -15,6 +15,7 @@
   "author": "Yassine Sboui",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.4",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^16.0.1",
