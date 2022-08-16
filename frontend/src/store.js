@@ -1,15 +1,21 @@
-import { createStore, applyMiddleware } from 'redux'
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { configureStore } from '@reduxjs/toolkit'
+import { productListReducer } from './reducers/productReducers.js'
+import { batchedSubscribe } from 'redux-batched-subscribe'
+import _debounce from 'lodash/debounce'
+import logger from 'redux-logger'
 
-const reducer = combineReducers({})
+const reducer = {
+  productList: productListReducer,
+}
 const initialState = {}
-const middleware = [thunk]
-const store = createStore(
+const debounceNotify = _debounce((notify) => notify())
+
+const store = configureStore({
   reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  devTools: process.env.NODE_ENV !== 'production',
   initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-)
+  enhancers: [batchedSubscribe(debounceNotify)],
+})
 
 export default store
