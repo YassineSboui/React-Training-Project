@@ -23,10 +23,10 @@ const ProductScreen = ({ history }) => {
   const navigate = useNavigate()
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
 
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?qty=${qty}   `)
+    navigate(`/cart/${id}?qty=${qty}`)
   }
 
   useEffect(() => {
@@ -90,12 +90,8 @@ const ProductScreen = ({ history }) => {
                     <Row>
                       <Col>Qty</Col>
                       <Col>
-                        <Form.Control
-                          as='select'
+                        <Form.Select
                           value={qty}
-                          onClick={(e) => {
-                            setQty(e.target.value)
-                          }}
                           onChange={(e) => {
                             setQty(e.target.value)
                           }}
@@ -105,7 +101,7 @@ const ProductScreen = ({ history }) => {
                               {x + 1}
                             </option>
                           ))}
-                        </Form.Control>
+                        </Form.Select>
                       </Col>
                     </Row>
                   </ListGroupItem>
