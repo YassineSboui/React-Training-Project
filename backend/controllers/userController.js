@@ -16,7 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      toker: generatToken(user._id),
+      token: generatToken(user._id),
     })
   } else {
     res.status(401)
@@ -29,7 +29,19 @@ const authUser = asyncHandler(async (req, res) => {
 //@acess Private
 
 const getUserProfile = asyncHandler(async (req, res) => {
-  res.send('Success')
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    })
+  } else {
+    res.status(404)
+    throw new Error('Inalid email or passowrd')
+  }
 })
 
 export { authUser, getUserProfile }

@@ -13,17 +13,20 @@ const protect = expressAsyncHandler(async (req, res, next) => {
 
       const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
-      console.log(decoded)
+      req.user = await User.findById(decoded.id).select('-password')
 
       next()
-    } catch (error) {}
+    } catch (error) {
+      console.error(error)
+      res.status(401)
+      throw new Error('Not authorized , Token  failed')
+    }
   }
 
   if (!token) {
     res.status(401)
     throw new Error('Not authorized , No Token')
   }
-  next()
 })
 
 export { protect }
