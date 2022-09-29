@@ -2,22 +2,31 @@ import { configureStore } from '@reduxjs/toolkit'
 import {
   productListReducer,
   productDetailsReducer,
-} from './reducers/productReducers.js'
+} from './reducers/productReducers'
 import { batchedSubscribe } from 'redux-batched-subscribe'
 import _debounce from 'lodash/debounce'
-import { cartReducer } from './reducers/cartReducers.js'
+import { cartReducer } from './reducers/cartReducers'
+import { userLoginReducer } from './reducers/userReducers'
 
 const reducer = {
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
+  userLgoin: userLoginReducer,
 }
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : []
 
-const preloadedState = { cart: { cartItems: cartItemsFromStorage } }
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null
+
+const preloadedState = {
+  cart: { cartItems: cartItemsFromStorage },
+  userLogin: { userInfo: userInfoFromStorage },
+}
 const debounceNotify = _debounce((notify) => notify())
 
 const store = configureStore({
@@ -27,6 +36,5 @@ const store = configureStore({
   preloadedState,
   enhancers: [batchedSubscribe(debounceNotify)],
 })
-console.log(store)
 
 export default store

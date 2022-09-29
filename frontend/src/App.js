@@ -6,6 +6,7 @@ import Header from './components/Header'
 import HomeScreens from './screens/HomeScreens'
 import ProductScreen from './screens/ProductScreen'
 import CartScreen from './screens/CartScreen'
+import LoginScreen from './screens/LoginScreen'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <main className='py-3'>
         <Container>
           <Routes>
+            <Route path='/login' element={<LoginScreen />} />
             <Route exact path='/' element={<HomeScreens />} />
             <Route path='/product/:id' element={<ProductScreen />} />
             <Route path='/cart/*' element={<CartScreen />} />
