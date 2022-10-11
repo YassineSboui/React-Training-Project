@@ -6,13 +6,14 @@ import {
 import { batchedSubscribe } from 'redux-batched-subscribe'
 import _debounce from 'lodash/debounce'
 import { cartReducer } from './reducers/cartReducers'
-import { userLoginReducer } from './reducers/userReducers'
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
 
 const reducer = {
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
-  userLgoin: userLoginReducer,
+  userLogin: userLoginReducer,
+  userRegiser: userRegisterReducer,
 }
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
