@@ -88,11 +88,9 @@ const RegisterScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <div className='py-3'>
-          <Button type='submit' variant='primary'>
-            Register
-          </Button>
-        </div>
+        <Button type='submit' variant='primary' className='w-100 my-3'>
+          Register
+        </Button>
       </Form>
 
       <Row className='py-3'>
