@@ -1,4 +1,5 @@
 import React from 'react'
+// import { Route } from 'react-router-dom'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,10 +15,10 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='dark' variant='dark ' expand='lg' collapseOnSelect>
+      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <img
-            src='playtech-logo.ico'
+            src='favicon.ico'
             width='100'
             height='70'
             className='d-inline-block align-top rounded'
@@ -28,6 +29,7 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
+            {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
             <Nav className='ms-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
@@ -46,9 +48,22 @@ const Header = () => {
               ) : (
                 <LinkContainer to='/login'>
                   <Nav.Link>
-                    <i className='fas fa-user'></i>SIGN IN
+                    <i className='fas fa-user'></i> Sign In
                   </Nav.Link>
                 </LinkContainer>
+              )}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title='Admin ' id='adminmenu'>
+                  <LinkContainer to='/admin/userlist'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/productlist'>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/orderlist'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>

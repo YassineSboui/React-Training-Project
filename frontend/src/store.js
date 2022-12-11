@@ -1,26 +1,56 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { batchedSubscribe } from 'redux-batched-subscribe'
+import _debounce from 'lodash/debounce'
 import {
   productListReducer,
   productDetailsReducer,
+  productDeleteReducer,
+  productCreateReducer,
+  productUpdateReducer,
+  productReviewCreateReducer,
+  productTopRatedReducer,
 } from './reducers/productReducers'
-import { batchedSubscribe } from 'redux-batched-subscribe'
-import _debounce from 'lodash/debounce'
 import { cartReducer } from './reducers/cartReducers'
 import {
   userLoginReducer,
   userRegisterReducer,
   userDetailsReducer,
   userUpdateProfileReducer,
+  userListReducer,
+  userDeleteReducer,
+  userUpdateReducer,
 } from './reducers/userReducers'
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+  orderDeliverReducer,
+  orderListMyReducer,
+  orderListReducer,
+} from './reducers/orderReducers'
 
 const reducer = {
   productList: productListReducer,
   productDetails: productDetailsReducer,
+  productDelete: productDeleteReducer,
+  productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
+  productReviewCreate: productReviewCreateReducer,
+  productTopRated: productTopRatedReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
-  userRegiser: userRegisterReducer,
+  userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  userList: userListReducer,
+  userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
+  orderDeliver: orderDeliverReducer,
+  orderListMy: orderListMyReducer,
+  orderList: orderListReducer,
 }
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

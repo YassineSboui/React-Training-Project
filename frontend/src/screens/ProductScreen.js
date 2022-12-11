@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listProductDetails } from '../actions/productActions'
 import { useNavigate } from 'react-router-dom'
 
-const ProductScreen = ({ history }) => {
+const ProductScreen = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const navigate = useNavigate()
