@@ -81,7 +81,7 @@ const OrderScreen = () => {
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
-    dispatch(payOrder(orderId, paymentResult))
+    dispatch(payOrder(orderId))
   }
 
   const deliverHandler = () => {
@@ -209,6 +209,13 @@ const OrderScreen = () => {
                       onSuccess={successPaymentHandler}
                     />
                   )}
+                  <Button
+                    type='button'
+                    className='btn w-100'
+                    onClick={successPaymentHandler}
+                  >
+                    Pay
+                  </Button>
                 </ListGroup.Item>
               )}
               {loadingDeliver && <Loader />}

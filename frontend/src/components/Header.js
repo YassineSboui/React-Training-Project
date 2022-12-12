@@ -17,13 +17,13 @@ const Header = () => {
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
-          <img
+          {/* <img
             src='favicon.ico'
             width='100'
             height='70'
             className='d-inline-block align-top rounded'
             alt='logo'
-          />
+          /> */}
           <LinkContainer to='/' className='m-3'>
             <Navbar.Brand>PlayTech</Navbar.Brand>
           </LinkContainer>
