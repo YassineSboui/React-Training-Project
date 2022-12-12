@@ -27,6 +27,13 @@ function App() {
         <Container>
           <Routes>
             <Route exact path='/' element={<HomeScreens />} />
+            <Route exact path='/search/:keyword' element={<HomeScreens />} />
+            <Route exact path='/page/:pageNumber' element={<HomeScreens />} />
+            <Route
+              exact
+              path='/search/:keyword/page/:pageNumber'
+              element={<HomeScreens />}
+            />
             <Route path='/order/:id' element={<OrderScreen />} />
             <Route path='/placeorder' element={<PlaceOrderScreen />} />
             <Route path='/shipping' element={<ShippingScreen />} />
